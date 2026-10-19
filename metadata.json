@@ -1,0 +1,6 @@
+{
+  "name": "Smart Wardrobe",
+  "description": "Bilingual Arabic/English Smart Digital Wardrobe & Personal AI Stylist with Weather-Aware, Casual, and Formal outfit generation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

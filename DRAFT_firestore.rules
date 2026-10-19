@@ -1,0 +1,60 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global default-deny safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isValidWardrobeItem(data) {
+      return data.userId is string &&
+             data.userId == request.auth.uid &&
+             data.name is string && data.name.size() >= 1 && data.name.size() <= 100 &&
+             data.imageUrl is string && data.imageUrl.size() >= 1 && data.imageUrl.size() <= 900000 &&
+             data.category is string && data.category in ['Top', 'Outerwear', 'Bottom', 'Shoes'] &&
+             data.weather is string && data.weather in ['Cold', 'Mild', 'Hot', 'All-season'] &&
+             data.style is string && data.style in ['Casual', 'Formal/Smart', 'Sport'] &&
+             data.createdAt is timestamp && data.createdAt <= request.time &&
+             data.updatedAt is timestamp && data.updatedAt <= request.time;
+    }
+
+    match /wardrobe/{itemId} {
+      allow get: if isSignedIn() && isValidId(itemId) && existing().userId == request.auth.uid;
+      allow list: if isSignedIn() && existing().userId == request.auth.uid;
+
+      allow create: if isSignedIn() &&
+                       isValidId(itemId) &&
+                       incoming().keys().hasAll(['userId', 'name', 'imageUrl', 'category', 'weather', 'style', 'createdAt', 'updatedAt']) &&
+                       incoming().keys().hasOnly(['userId', 'name', 'imageUrl', 'category', 'weather', 'style', 'createdAt', 'updatedAt']) &&
+                       isValidWardrobeItem(incoming());
+
+      allow update: if isSignedIn() &&
+                       isValidId(itemId) &&
+                       isValidWardrobeItem(incoming()) &&
+                       existing().userId == request.auth.uid &&
+                       incoming().userId == existing().userId &&
+                       incoming().createdAt == existing().createdAt &&
+                       incoming().diff(existing()).affectedKeys().hasOnly(['name', 'imageUrl', 'category', 'weather', 'style', 'updatedAt']);
+
+      allow delete: if isSignedIn() &&
+                       isValidId(itemId) &&
+                       existing().userId == request.auth.uid;
+    }
+  }
+}

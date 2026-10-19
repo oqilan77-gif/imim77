@@ -1,0 +1,66 @@
+{
+  "entities": {
+    "WardrobeItem": {
+      "title": "WardrobeItem",
+      "description": "A clothing item stored in the user's Smart Digital Wardrobe.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The authenticated UID of the wardrobe item owner."
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of the clothing item (1 to 100 characters)."
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "Base64 data URI or preset visual asset identifier for the clothing item photo."
+        },
+        "category": {
+          "type": "string",
+          "description": "Clothing category.",
+          "enum": ["Top", "Outerwear", "Bottom", "Shoes"]
+        },
+        "weather": {
+          "type": "string",
+          "description": "Weather suitability for the clothing item.",
+          "enum": ["Cold", "Mild", "Hot", "All-season"]
+        },
+        "style": {
+          "type": "string",
+          "description": "Style classification for the clothing item.",
+          "enum": ["Casual", "Formal/Smart", "Sport"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the item was created (must use FieldValue.serverTimestamp())."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the item was last updated (must use FieldValue.serverTimestamp())."
+        }
+      },
+      "required": [
+        "userId",
+        "name",
+        "imageUrl",
+        "category",
+        "weather",
+        "style",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/wardrobe/{itemId}": {
+      "schema": {
+        "$ref": "#/entities/WardrobeItem"
+      },
+      "description": "Collection of clothing items in the Smart Digital Wardrobe scoped by userId."
+    }
+  }
+}

@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Smart Wardrobe</string>
+    <string name="app_title_ar">خزانة الملابس الذكية</string>
+    <string name="app_title_en">Smart Digital Wardrobe</string>
+    <string name="sign_in_google_ar">تسجيل الدخول باستخدام Google</string>
+    <string name="sign_in_google_en">Sign in with Google</string>
+    <string name="nav_generator_ar">منسق الإطلالات</string>
+    <string name="nav_generator_en">Outfits</string>
+    <string name="nav_closet_ar">خزانتي</string>
+    <string name="nav_closet_en">My Closet</string>
+    <string name="nav_add_ar">إضافة ملابس</string>
+    <string name="nav_add_en">Add Clothes</string>
+    <string name="nav_studio_ar">استوديو الذكاء</string>
+    <string name="nav_studio_en">AI Studio</string>
+</resources>

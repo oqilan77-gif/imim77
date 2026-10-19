@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Subtle inner medallion ring -->
+    <path
+        android:fillColor="#22FFFFFF"
+        android:pathData="M54,54m-32,0a32,32 0,1 1,64 0a32,32 0,1 1,-64 0" />
+    <!-- Bold coat hanger hook and frame silhouette -->
+    <path
+        android:fillColor="#FFF8FAF9"
+        android:pathData="M54,28C50.13,28 47,31.13 47,35H51C51,33.34 52.34,32 54,32C55.66,32 57,33.34 57,35C57,36.3 56.16,37.4 55,37.82V41.2L30.4,56.5C28.9,57.43 28,59.07 28,60.84C28,63.69 30.31,66 33.16,66H74.84C77.69,66 80,63.69 80,60.84C80,59.07 79.1,57.43 77.6,56.5L54,41.82V39.5C57.95,38.82 61,35.38 61,31.2C61,29.43 57.87,28 54,28ZM34.5,61L54,48.8L73.5,61H34.5Z" />
+    <!-- Stylist garment fold accent bar -->
+    <path
+        android:fillColor="#FFDCECE4"
+        android:pathData="M40,69H68C69.66,69 71,70.34 71,72C71,73.66 69.66,75 68,75H40C38.34,75 37,73.66 37,72C37,70.34 38.34,69 40,69Z" />
+</vector>
